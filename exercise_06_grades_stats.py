@@ -34,4 +34,30 @@ def grades_stats(filename):
             "Cami": (10.0, 10.0, 10.0),
         }
     """
-    pass  # Reemplazar con tu implementación
+    
+    stats = {}
+    try:
+        with open(filename, 'r') as archivo:
+            for linea in archivo:
+                linea = linea.strip()
+
+                if not linea:
+                    continue
+
+
+                nombre,notas_str = linea.split(":")
+
+                notas = [float(numero) for numero in notas_str.split(",")]
+
+                promedio = sum(notas) / len(notas)
+                maximo = max(notas)
+                minimo = min(notas)
+
+                stats[nombre] = (promedio, maximo, minimo)
+
+            return stats 
+
+    except FileNotFoundError:
+
+            raise 
+

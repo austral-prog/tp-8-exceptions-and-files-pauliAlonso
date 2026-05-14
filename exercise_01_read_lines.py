@@ -1,5 +1,3 @@
-# Ejercicio 1 - Leer líneas de un archivo
-
 
 def read_lines(filename):
     """
@@ -25,4 +23,21 @@ def read_lines(filename):
         # archivo contiene: "manzana\n  banana\npera\n"
         read_lines("datos.txt") -> ["manzana", "banana", "pera"]
     """
-    pass  # Reemplazar con tu implementación
+    lista = []
+
+    with open(filename, 'r') as archivo:
+        for linea in archivo:
+            lista_sin_espacios = linea.strip()
+
+            if lista_sin_espacios:
+                lista.append(lista_sin_espacios) 
+
+        return lista 
+
+
+
+        
+
+
+
+

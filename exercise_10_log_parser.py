@@ -42,4 +42,33 @@ def parse_log(filename):
             "WARN": ["lento"],
         }
     """
-    pass  # Reemplazar con tu implementación
+    
+    logs = {}
+
+    try:
+        with open(filename, 'r') as archivo:
+            for linea in archivo:
+                linea = linea.strip() 
+
+                if not linea:
+                    continue 
+
+
+                if ':' not in linea:
+                    raise ValueError("invalid log line")
+
+
+                nivel, mensaje = linea.split(':', 1)
+                nivel = nivel.strip()
+                mensaje = mensaje.strip() 
+
+                if nivel not in logs:
+                    logs[nivel] = []
+                logs[nivel].append(mensaje)
+        return logs 
+
+    except FileNotFoundError:
+        raise 
+
+
+
